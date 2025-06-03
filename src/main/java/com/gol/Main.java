@@ -4,8 +4,7 @@ import processing.core.PApplet;
 
 /*
 TODO:
--return origin to start function from, from the mainGraph object
--test
+-understand the build system
 */
 
 public class Main extends PApplet {

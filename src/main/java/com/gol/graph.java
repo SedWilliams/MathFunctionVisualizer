@@ -2,7 +2,7 @@ package com.gol;
 
 import processing.core.PApplet;
 
-public class graph {
+public class Graph {
 
     PApplet p;
     float graphWidth;
@@ -12,7 +12,7 @@ public class graph {
     float graphLocX;
     float graphLocY;
 
-    public graph(PApplet p, float graphWidth, float graphHeight, float graphIntervalX, float graphIntervalY, float graphLocX, float graphLocY) {
+    public Graph(PApplet p, float graphWidth, float graphHeight, float graphIntervalX, float graphIntervalY, float graphLocX, float graphLocY) {
         this.p = p;
         this.graphWidth = graphWidth;
         this.graphHeight = graphHeight;

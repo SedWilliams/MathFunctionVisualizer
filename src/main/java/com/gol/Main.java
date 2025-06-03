@@ -10,7 +10,7 @@ TODO:
 
 public class Main extends PApplet {
 
-    graph mainGraph;
+    Graph mainGraph;
     float x;
     float y;
 
@@ -28,7 +28,7 @@ public class Main extends PApplet {
 
         scale(1.30f);
         translate(100, height-400);
-        mainGraph = new graph(this, 500f, 500f, 50f, 50f, 0f, 0f - 500f);
+        mainGraph = new Graph(this, 500f, 500f, 50f, 50f, 0f, 0f - 500f);
         mainGraph.drawGraph();
         x = mainGraph.graphLocX;
         y = height;
@@ -53,6 +53,6 @@ public class Main extends PApplet {
     }
 
     public static void main(String[] args) {
-        PApplet.main("com.gol.Main");  // Updated to use fully qualified class name
+        PApplet.main("com.gol.Main");
     }
 } 

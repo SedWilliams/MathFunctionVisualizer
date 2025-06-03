@@ -1,8 +1,11 @@
+package com.gol;
+
 import processing.core.PApplet;
 
 /*
 TODO:
 -return origin to start function from, from the mainGraph object
+-test
 */
 
 public class Main extends PApplet {
@@ -50,6 +53,6 @@ public class Main extends PApplet {
     }
 
     public static void main(String[] args) {
-        PApplet.main("Main");
+        PApplet.main("com.gol.Main");  // Updated to use fully qualified class name
     }
-}
+} 

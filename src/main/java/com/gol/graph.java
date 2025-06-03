@@ -1,3 +1,5 @@
+package com.gol;
+
 import processing.core.PApplet;
 
 public class graph {
@@ -52,4 +54,4 @@ public class graph {
 
     public void getOrigin() {
     }
-}
+} 

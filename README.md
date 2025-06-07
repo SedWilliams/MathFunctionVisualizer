@@ -9,6 +9,7 @@ This is a simple java program that plots and visualizes mathematical functions. 
 The program currently hardcodes a single exponential function just to test the functionality of other features.
 
 ## Mermaid Chart
+
 ```mermaid
 classDiagram
     class Main {
@@ -43,9 +44,8 @@ classDiagram
         +getPositionY()
     }
     
-    Main --|> PApplet : extends
-    Main *-- Graph : has
-
+    PApplet <-- Main
+    Main --> Graph : has
 ```
 
 ## TO:DO

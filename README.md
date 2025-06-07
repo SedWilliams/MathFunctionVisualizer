@@ -8,6 +8,46 @@ This is a simple java program that plots and visualizes mathematical functions. 
 ## Current
 The program currently hardcodes a single exponential function just to test the functionality of other features.
 
+## Mermaid Chart
+```
+classDiagram
+    class Main {
+        -Graph mainGraph
+        -float x
+        -float y
+        +settings()
+        +setup()
+        +draw()
+        +main(String[] args)
+    }
+    
+    class Graph {
+        -PApplet processing
+        -float width
+        -float height
+        -float gridSpacingX
+        -float gridSpacingY
+        -float positionX
+        -float positionY
+        +Graph(PApplet, float, float, float, float, float, float)
+        +drawGraph()
+        +updateGraph(float, float, float, float, float, float)
+        -validateDimensions(float, float, float, float)
+        -drawBorder()
+        -drawGridLines()
+        +getWidth()
+        +getHeight()
+        +getGridSpacingX()
+        +getGridSpacingY()
+        +getPositionX()
+        +getPositionY()
+    }
+    
+    Main --|> PApplet : extends
+    Main *-- Graph : has
+
+```
+
 ## TO:DO
   * Standardize and document build and run system
   * Polish graph

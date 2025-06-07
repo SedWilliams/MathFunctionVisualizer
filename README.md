@@ -15,4 +15,4 @@ The program currently hardcodes a single exponential function just to test the f
   * general polish
 
 ---
-that's all for now, pls (hire me)[https://github.com/SedWilliams] i need money for college
+that's all for now, pls [hire me](https://github.com/SedWilliams) i need money for college

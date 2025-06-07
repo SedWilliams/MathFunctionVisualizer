@@ -29,7 +29,7 @@ public class Main extends PApplet {
         translate(100, height-400);
         mainGraph = new Graph(this, 500f, 500f, 50f, 50f, 0f, 0f - 500f);
         mainGraph.drawGraph();
-        x = mainGraph.graphLocX;
+        x = mainGraph.getPositionX();
         y = height;
         scale(1f);
         translate(-100, -1*(height-400));

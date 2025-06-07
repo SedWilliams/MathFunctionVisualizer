@@ -13,6 +13,12 @@ The program currently hardcodes a single exponential function just to test the f
   * Polish graph
   * Allow for validated user input to graph different functions
   * general polish
+  * also make add negative values to the graph
+  * add coordinate numbering to mouse
+  * add coordinate numbering to graph
+  * add customizable minX, minY
+  * add customizable maxX, maxY
+
 
 ---
 that's all for now, pls [hire me](https://github.com/SedWilliams) i need money for college

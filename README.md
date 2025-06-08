@@ -69,7 +69,7 @@ classDiagram
   * fix function displaying on graph at origin
   * add visible markings for origin of graph
   * Allow input
-      * check if wolfram alpha has any apis I can use to validate the math functions
+      * use _Wolfram Java API implementation_ I found on github I can use to validate the math functions
       * input for custom function
       * input validation
       * input evaluation

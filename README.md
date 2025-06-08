@@ -49,11 +49,14 @@ classDiagram
 ```
 
 ## TO:DO
+  * ~~create docs for mvp~~
   * Standardize and document build and run system
-  * Polish graph
+  * Polish graph display
+  * refactor Graph class
   * Allow for validated user input to graph different functions
   * general polish
-  * also make add negative values to the graph
+  ~~* also add negative values to the graph~~
+    * need to refactor the way I do the translations on the graph. Check throughout the graph class as I already localized those settings to just Graph instead of having couplings in Main.
   * add coordinate numbering to mouse
   * add coordinate numbering to graph
   * add customizable minX, minY

@@ -6,7 +6,11 @@ This is a simple java program that plots and visualizes mathematical functions. 
 *coming soon*
 
 ## Current
-The program currently hardcodes a single exponential function just to test the functionality of other features.
+The program currently features:
+* A pannable coordinate grid system with fixed border
+* Hardcoded quadratic function visualization
+* Infinite grid lines with clipping
+* Smooth panning controls
 
 ## Mermaid Chart
 
@@ -16,32 +20,43 @@ classDiagram
         -Graph mainGraph
         -float x
         -float y
+        -float frameRate
+        -float backgroundColor
+        -boolean isDragging
+        -float lastMouseX
+        -float lastMouseY
+        -float gridOffsetX
+        -float gridOffsetY
         +settings()
         +setup()
         +draw()
+        +mousePressed()
+        +mouseReleased()
         +main(String[] args)
     }
     
     class Graph {
         -PApplet processing
-        -float width
-        -float height
+        -float graphWidth
+        -float graphHeight
         -float gridSpacingX
         -float gridSpacingY
-        -float positionX
-        -float positionY
+        -float offsetX
+        -float offsetY
+        -float borderX
+        -float borderY
+        -float MAX_WIDTH
+        -float MAX_HEIGHT
         +Graph(PApplet, float, float, float, float, float, float)
         +drawGraph()
         +updateGraph(float, float, float, float, float, float)
-        -validateDimensions(float, float, float, float)
-        -drawBorder()
-        -drawGridLines()
-        +getWidth()
-        +getHeight()
+        -validateGraph(float, float, float, float)
+        +getGraphWidth()
+        +getGraphHeight()
         +getGridSpacingX()
         +getGridSpacingY()
-        +getPositionX()
-        +getPositionY()
+        +getOffsetX()
+        +getOffsetY()
     }
     
     PApplet <-- Main
@@ -50,17 +65,22 @@ classDiagram
 
 ## TO:DO
   * ~~create docs for mvp~~
+  * ~~update docs~~
   * Standardize and document build and run system
-  * Polish graph display
-  * refactor Graph class
+  * ~~Polish graph display~~
+  * ~~refactor Graph class~~
   * Allow for validated user input to graph different functions
-  * general polish
-  ~~* also add negative values to the graph~~
-    * need to refactor the way I do the translations on the graph. Check throughout the graph class as I already localized those settings to just Graph instead of having couplings in Main.
+  * ~~general polish~~
+  * ~~also add negative values to the graph~~
+  * ~~need to refactor the way I do the translations on the graph. Check throughout the graph class as I already localized those settings to just Graph instead of having couplings in Main.~~
+      * removed translations from most of the process, any translations are now abstracted and completed on assignment of related variables (only necessary on borderX/Y defined in graph.java)
   * add coordinate numbering to mouse
   * add coordinate numbering to graph
   * add customizable minX, minY
   * add customizable maxX, maxY
+  * add zoom functionality
+  * add grid snapping option
+  * I don't believe processing has native button support without implementing hover/click logic. There is definitely a better way to do this. Find a solution and make possible addition to processing repo on github.
 
 
 ---

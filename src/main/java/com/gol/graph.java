@@ -3,41 +3,41 @@ package com.gol;
 import processing.core.PApplet;
 
 /**
- * A class that handles the initial drawing and updating of a grid-based graph using Processing.
- * The graph is essentially a rectangular grid with customizable dimensions and intervals.
+ * A class that handles the drawing and updating of a pannable coordinate grid system using Processing.
+ * The graph consists of:
+ * - A fixed border that defines the visible area
+ * - Infinite grid lines that can be panned within the border
+ * - Customizable dimensions and grid spacing
+ * 
+ * The coordinate system uses screen pixels for all measurements, with (0,0) at the center.
+ * The grid can be panned infinitely within the fixed border using offset coordinates.
  */
 public class Graph {
     private final PApplet processing;
     private float graphWidth;          // Width of the graph in pixels
     private float graphHeight;         // Height of the graph in pixels
-    private float gridSpacingX;   // Horizontal spacing between grid lines
-    private float gridSpacingY;   // Vertical spacing between grid lines
-    private float positionX;      // X coordinate of the graph's top-left corner
-    private float positionY;      // Y coordinate of the graph's top-left corner
+    private float gridSpacingX;        // Horizontal spacing between grid lines
+    private float gridSpacingY;        // Vertical spacing between grid lines
+    private float offsetX;             // X offset for panning
+    private float offsetY;             // Y offset for panning
+    private final float borderX;       // Fixed border X position
+    private final float borderY;       // Fixed border Y position
+    private float MAX_WIDTH;           // Max width for grid line extension
+    private float MAX_HEIGHT;          // Max height for grid line extension
 
     /**
      * Creates a new graph with the specified dimensions and properties.
      *
-     * @param processing   The Processing PApplet instance for drawing
-     * @param graphWidth       Width of the graph in pixels
-     * @param graphHeight      Height of the graph in pixels
+     * @param processing    The Processing PApplet instance for drawing
+     * @param width        Width of the graph in pixels
+     * @param height       Height of the graph in pixels
      * @param gridSpacingX Horizontal spacing between grid lines
      * @param gridSpacingY Vertical spacing between grid lines
-     * @param positionX   X coordinate of the graph's top-left corner
-     * @param positionY   Y coordinate of the graph's top-left corner
-     * @throws IllegalArgumentException if any dimension is negative or zero
-     * 
-     * 
-     * Regarding displaying of the graph:
-     * The position of the graph is always translated to the middle of the canvas,
-     * and then moved up and left by half of it's height and width.
-     *  * The translation to the middle is done before each time a part of the graph is drawn.
-     *  * The movement up and to the left is calculated in the constructor.
-     * 
-     * The draw methods can possibly be refactored by using a single method that draws both the
-     * the border and the grid lines.
+     * @param offsetX      Initial X offset for panning
+     * @param offsetY      Initial Y offset for panning
+     * @throws IllegalArgumentException if any spacing value is negative or zero
      */
-    public Graph(PApplet processing, float width, float height, float gridSpacingX, float gridSpacingY, float positionX, float positionY) {
+    public Graph(PApplet processing, float width, float height, float gridSpacingX, float gridSpacingY, float offsetX, float offsetY) {
         validateGraph(width, height, gridSpacingX, gridSpacingY);
         
         this.processing = processing;
@@ -45,18 +45,15 @@ public class Graph {
         this.graphHeight = height;
         this.gridSpacingX = gridSpacingX;
         this.gridSpacingY = gridSpacingY;
-        //automatically centers the graph on the screen
-        this.positionX = positionX - graphWidth/2;
-        this.positionY = positionY - graphHeight/2;
-    }
+        this.offsetX = offsetX;
+        this.offsetY = offsetY;
+        // Set border position once and keep it fixed
+        this.borderX = processing.width/2 - graphWidth/2;
+        this.borderY = processing.height/2 - graphHeight/2;
+        this.MAX_WIDTH = processing.width * 10;
+        this.MAX_HEIGHT = processing.height * 10;
 
-    /**
-     * Draws the graph with its current properties.
-     * This includes the outer rectangle border and the internal grid lines.
-     */
-    public void drawGraph() {
-        drawBorder();
-        drawGridLines();
+        drawGraph();
     }
 
     /**
@@ -66,19 +63,20 @@ public class Graph {
      * @param graphHeight      New height of the graph
      * @param gridSpacingX New horizontal grid spacing
      * @param gridSpacingY New vertical grid spacing
-     * @param positionX   New X position
-     * @param positionY   New Y position
+     * @param offsetX   New offset X position
+     * @param offsetY   New offset Y position
      * @throws IllegalArgumentException if any dimension is negative or zero
      */
-    public void updateGraph(float graphWidth, float graphHeight, float gridSpacingX, float gridSpacingY, float positionX, float positionY) {
+    public void updateGraph(float graphWidth, float graphHeight, float gridSpacingX, float gridSpacingY, float offsetX, float offsetY) {
         validateGraph(graphWidth, graphHeight, gridSpacingX, gridSpacingY);
         
         this.graphWidth = graphWidth;
         this.graphHeight = graphHeight;
         this.gridSpacingX = gridSpacingX;
         this.gridSpacingY = gridSpacingY;
-        this.positionX = positionX - graphWidth/2;
-        this.positionY = positionY - graphHeight/2;
+        this.offsetX = offsetX;  // Use the offset directly for grid movement
+        this.offsetY = offsetY;
+        // Don't update borderX/Y here - keep them fixed
 
         drawGraph();
     }
@@ -95,39 +93,34 @@ public class Graph {
     }
 
     /*
-     * draws the outer border of the graph.
+     * draws the graph.
      */
-    private void drawBorder() {
+    public void drawGraph() {
+        // Create clipping region using the fixed border position
+        processing.clip(borderX, borderY, graphWidth, graphHeight);
+        
+        // Draw infinite grid lines with offset
+        processing.stroke(190, 255);
+        processing.strokeWeight(1f);
+        
+        // Draw vertical grid lines (extend well beyond visible area)
+        for(float i = -MAX_WIDTH; i <= MAX_WIDTH; i += gridSpacingX) {
+            float x = i + offsetX;
+            processing.line(x, -MAX_HEIGHT, x, MAX_HEIGHT);
+        }
+
+        // Draw horizontal grid lines (extend well beyond visible area)
+        for(float j = -MAX_HEIGHT; j <= MAX_HEIGHT; j += gridSpacingY) {
+            float y = j + offsetY;
+            processing.line(-MAX_WIDTH, y, MAX_WIDTH, y);
+        }
+
+        // Draw the fixed border on top
+        processing.noClip();
         processing.stroke(255);
         processing.strokeWeight(4.5f);
-        processing.fill(0, 0);
-
-        processing.pushMatrix();
-        processing.translate(processing.width/2, processing.height/2);
-        processing.rect(positionX, positionY, graphWidth, graphHeight, 0);
-        processing.strokeWeight(1f);
-        processing.popMatrix();
-    }
-
-    /*
-     * draws the internal grid lines.
-     */
-    private void drawGridLines() {
-        processing.fill(190, 255); // Set fill for grid lines
-        processing.pushMatrix();
-        processing.translate(processing.width/2, processing.height/2);
-
-        // draw vertical grid lines
-        for(float i = positionY + gridSpacingX; i < positionY + graphHeight; i += gridSpacingX) {
-            processing.line(positionX, i, positionX + graphWidth, i);
-        }
-
-        // draw horizontal grid lines
-        for(float j = positionX + gridSpacingY; j < positionX + graphWidth; j += gridSpacingY) {
-            processing.line(j, positionY, j, positionY + graphHeight); // Fixed coordinates for horizontal lines
-        }
-        
-        processing.popMatrix();
+        processing.noFill();
+        processing.rect(borderX, borderY, graphWidth, graphHeight, 0);
     }
 
     // Getters for graph properties
@@ -135,6 +128,6 @@ public class Graph {
     public float getGraphHeight() { return graphHeight; }
     public float getGridSpacingX() { return gridSpacingX; }
     public float getGridSpacingY() { return gridSpacingY; }
-    public float getPositionX() { return positionX; }
-    public float getPositionY() { return positionY; }
+    public float getOffsetX() { return offsetX; }
+    public float getOffsetY() { return offsetY; }
 } 

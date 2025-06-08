@@ -64,6 +64,23 @@ classDiagram
 ```
 
 ## TO:DO
+  * I don't believe processing has native button support without implementing hover/click logic. There is definitely a better way to do this. Find a solution and make possible addition to processing repo on github.
+      * Then add button for returning to origin (just reset x/y offset) 
+  * fix function displaying on graph at origin
+  * add visible markings for origin of graph
+  * Allow input
+      * check if wolfram alpha has any apis I can use to validate the math functions
+      * input for custom function
+      * input validation
+      * input evaluation
+  * add implementations for custom functions
+      * linear
+      * quadratic
+      * exponential
+          * growth
+          * decay
+      * logarithmic
+      * etc
   * ~~create docs for mvp~~
   * ~~update docs~~
   * Standardize and document build and run system
@@ -80,7 +97,6 @@ classDiagram
   * add customizable maxX, maxY
   * add zoom functionality
   * add grid snapping option
-  * I don't believe processing has native button support without implementing hover/click logic. There is definitely a better way to do this. Find a solution and make possible addition to processing repo on github.
 
 
 ---

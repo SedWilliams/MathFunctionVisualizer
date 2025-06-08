@@ -18,7 +18,7 @@ public class Main extends PApplet {
         background(backgroundColor);
         frameRate(frameRate);
 
-        mainGraph = new Graph(this, 500f, 500f, 50f, 50f, 0f, 0f);
+        mainGraph = new Graph(this, 500f, 500f, 25f, 25f, 0f, 0f);
         mainGraph.drawGraph();
         x = width/2;
         y = height/2;

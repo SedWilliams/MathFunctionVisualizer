@@ -26,6 +26,16 @@ public class Graph {
      * @param positionX   X coordinate of the graph's top-left corner
      * @param positionY   Y coordinate of the graph's top-left corner
      * @throws IllegalArgumentException if any dimension is negative or zero
+     * 
+     * 
+     * Regarding displaying of the graph:
+     * The position of the graph is always translated to the middle of the canvas,
+     * and then moved up and left by half of it's height and width.
+     *  * The translation to the middle is done before each time a part of the graph is drawn.
+     *  * The movement up and to the left is calculated in the constructor.
+     * 
+     * The draw methods can possibly be refactored by using a single method that draws both the
+     * the border and the grid lines.
      */
     public Graph(PApplet processing, float width, float height, float gridSpacingX, float gridSpacingY, float positionX, float positionY) {
         validateGraph(width, height, gridSpacingX, gridSpacingY);

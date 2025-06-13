@@ -34,7 +34,6 @@ public class Main extends PApplet {
     }
 
     public void draw() {
-        background(backgroundColor);
         
         //logic behind graph panning
         if (isDragging) {
@@ -44,22 +43,13 @@ public class Main extends PApplet {
             panOffsetY += dy;
             lastMouseX = mouseX;
             lastMouseY = mouseY;
+            background(backgroundColor);
             mainGraph.updateGraph(500f, 500f, 50f, 50f, panOffsetX, panOffsetY);
         }
+
+        //FunctionDisplay functionDisplay = new FunctionDisplay(this);
         
         mainGraph.drawGraph();
-
-        // Draw function
-        pushMatrix();
-        translate(width/2, height/2);  // Match graph's coordinate system
-        noStroke();
-        fill(0, 150, 0);
-        x += 0.02f;
-        y = -1*((1.0f/60.0f)*x*x);
-        float graphX = x + panOffsetX;
-        float graphY = y + panOffsetY;
-        ellipse(graphX, graphY, 2.5f, 2.5f);
-        popMatrix();
     }
 
     //update 'isDragging' to true when mouse is pressed

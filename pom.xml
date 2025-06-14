@@ -16,9 +16,8 @@
 
     <repositories>
         <repository>
-            <id>processing</id>
-            <name>Processing Repository</name>
-            <url>https://maven.processing.org/content/repositories/releases/</url>
+            <id>jogamp</id>
+            <url>https://jogamp.org/deployment/maven</url>
         </repository>
     </repositories>
 
@@ -26,7 +25,7 @@
         <dependency>
             <groupId>org.processing</groupId>
             <artifactId>core</artifactId>
-            <version>3.3.7</version>
+            <version>4.3.1</version>
         </dependency>
     </dependencies>
 

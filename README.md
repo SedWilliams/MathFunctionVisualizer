@@ -100,4 +100,3 @@ classDiagram
 
 
 ---
-that's all for now, pls [hire me](https://github.com/SedWilliams) i need money for college

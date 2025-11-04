@@ -2,7 +2,7 @@ import processing.core.PApplet;
 
 public class Main extends PApplet {
 
-    Graph mainGraph = new Graph(this, 500f, 500f, 50f, 50f);
+    Graph mainGraph;
     float x;
     float y;
     final float FRAME_RATE = 400;
@@ -28,6 +28,9 @@ public class Main extends PApplet {
 
         x = 0;  // Start at origin
         y = 0;
+
+        // Instantiate graph after Processing is initialized
+        mainGraph = new Graph(this, 500f, 500f, 50f, 50f);
     }
 
     public void draw() {
@@ -46,7 +49,9 @@ public class Main extends PApplet {
 
         //FunctionDisplay functionDisplay = new FunctionDisplay(this);
         
-        mainGraph.drawGraph();
+        if (mainGraph != null) {
+            mainGraph.drawGraph();
+        }
     }
 
     //update 'isDragging' to true when mouse is pressed

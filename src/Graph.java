@@ -66,8 +66,6 @@ public class Graph {
         // Use correct dimensions for max extents
         this.MAX_WIDTH = processing.width * 10;
         this.MAX_HEIGHT = processing.height * 10;
-
-        drawGraph();
     }
 
     /*******************************************************************

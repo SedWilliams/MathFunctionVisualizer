@@ -116,6 +116,10 @@ public class Graph {
         processing.rect(graphPos.get(0), graphPos.get(1), graphDimensions.get(0), graphDimensions.get(1), 0);
     }
 
+    public ArrayList<Float> getGraphPos() {
+        return  graphPos;
+    }
+
     /*
     public float getGraphWidth() { return graphWidth; }
     public float getGraphHeight() { return graphHeight; }

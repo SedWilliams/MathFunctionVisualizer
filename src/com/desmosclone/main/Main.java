@@ -1,3 +1,6 @@
+package com.desmosclone.main;
+import com.desmosclone.graph.Graph;
+
 import processing.core.PApplet;
 
 public class Main extends PApplet {
@@ -50,7 +53,7 @@ public class Main extends PApplet {
         //FunctionDisplay functionDisplay = new FunctionDisplay(this);
         
         if (mainGraph != null) {
-            mainGraph.drawGraph();
+            mainGraph.draw();
         }
     }
 

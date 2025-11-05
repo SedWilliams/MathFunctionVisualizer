@@ -1,4 +1,8 @@
+package com.desmosclone.graph;
 import java.util.ArrayList;
+
+import com.desmosclone.interfaces.Drawable;
+
 import processing.core.PApplet;
 
 public class Graph {
@@ -79,7 +83,7 @@ public class Graph {
         }
     }
 
-    public void drawGraph() {
+    public void draw() {
         // Create clipping region using the fixed border position
         processing.clip(
             Math.round(graphPos.get(0)),
